@@ -12,7 +12,7 @@ public class MainApplication {
         number = sc.nextInt();
 
         try {
-            int resultFactorial = Factorial.getResultFactorial(number);
+            int resultFactorial = Factorial.getResult(number);
             System.out.println(number + "!" + " = " + resultFactorial);
         } catch (NumberException e) {
             System.out.println(e.getMessage());
