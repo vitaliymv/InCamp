@@ -121,10 +121,7 @@ public class TicTacToe {
             right &= (table.MAP[i][i] == x);
             left &= (table.MAP[GAME_FIELD_SIZE - i - 1][i] == x);
         }
-        if(right || left) {
-            return true;
-        }
-        return false;
+        return right || left;
     }
 
     public boolean checkLinesZ() {

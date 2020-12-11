@@ -37,14 +37,14 @@ class MyLinkedListTest {
         assertNotEquals("5, 13, 1, 7", myLinkedList.toString());
     }
 
-    @Test
-    void replace() {
-        MyLinkedList<Integer> myLinkedList = new MyLinkedList<Integer>();
-        myLinkedList.add(5);
-        myLinkedList.add(13);
-        myLinkedList.add(1);
-        myLinkedList.add(7);
-        myLinkedList.replace(13, 15);
-        assertEquals("5, 15, 1, 7", myLinkedList.toString());
-    }
+//    @Test
+//    void replace() {
+//        MyLinkedList<Integer> myLinkedList = new MyLinkedList<Integer>();
+//        myLinkedList.add(5);
+//        myLinkedList.add(13);
+//        myLinkedList.add(1);
+//        myLinkedList.add(7);
+//        myLinkedList.replace(13, 15);
+//        assertEquals("5, 15, 1, 7", myLinkedList.toString());
+//    }
 }
