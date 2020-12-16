@@ -85,7 +85,6 @@ public class Structures {
     public static void main(String[] args) {
         System.out.println(getString(getTask1()));
         System.out.println(getString(getTask2()));
-
     }
 
     private static Task getTask2() {
