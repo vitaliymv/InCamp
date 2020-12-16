@@ -2,6 +2,7 @@ package week2.day2.pointsSilpo.test;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import week2.day2.pointsSilpo.checkout.AnyGoodsOffer;
 import week2.day2.pointsSilpo.checkout.Check;
 import week2.day2.pointsSilpo.checkout.CheckoutService;
 import week2.day2.pointsSilpo.checkout.Product;
@@ -63,5 +64,27 @@ public class CheckoutServiceTest {
 
         assertThat(check.getTotalPoints(), is(10));
     }
+
+    @Test
+    void useOffer__addOfferPoints() {
+        checkoutService.addProduct(milk_7);
+        checkoutService.addProduct(bred_3);
+
+        checkoutService.useOffer(new AnyGoodsOffer(6, 2));
+        Check check = checkoutService.closeCheck();
+
+        assertThat(check.getTotalPoints(), is(12));
+    }
+
+    @Test
+    void useOffer__whenCostLessThanRequired__doNothing() {
+        checkoutService.addProduct(bred_3);
+
+        checkoutService.useOffer(new AnyGoodsOffer(6, 2));
+        Check check = checkoutService.closeCheck();
+
+        assertThat(check.getTotalPoints(), is(3));
+    }
+
 
 }

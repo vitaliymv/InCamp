@@ -23,4 +23,10 @@ public class CheckoutService {
         return closedCheck;
     }
 
+    public void useOffer(AnyGoodsOffer offer) {
+        if (offer.totalCost <= check.getTotalCost())
+            check.addPoints(offer.points);
+    }
+
+
 }
