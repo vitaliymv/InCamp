@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class TicTacToeGame {
 
+    public static final String O = "O";
+    public static final String X = "X";
+
     public static void initialArray(String[][] array, String[][] array2) {
         int data = 1;
         for(int i = 0; i < array.length; i++) {
@@ -27,35 +30,39 @@ public class TicTacToeGame {
                         array[i][j] = "O";
                     }
                 }
-                System.out.print(array[i][j] + "|");
+                System.out.print(array[i][j] + "\t");
             }
             System.out.println();
         }
     }
 
     public static boolean checkDiagonalX(String[][] array) {
+        return checkDiagonal(array, X);
+    }
+
+    private static boolean checkDiagonal(String[][] array, String x) {
         boolean right = true;
         boolean left = true;
         for(int i = 0; i < array.length; i++) {
-            right &= (array[i][i] == "X");
-            left &= (array[array.length - i - 1][i] == "X");
+            right &= (array[i][i].equals(x));
+            left &= (array[array.length - i - 1][i].equals(x));
         }
-        if(right || left) {
-            return true;
-        }
-        return false;
-
+        return right || left;
     }
 
     public static boolean checkLinesX(String [][] array) {
+        return checkLine(array, X);
+    }
+
+    private static boolean checkLine(String[][] array, String x) {
         boolean rows;
         boolean columns;
         for(int i = 0; i < array.length; i++) {
             columns = true;
             rows = true;
             for(int j = 0; j < array.length; j++) {
-                columns &= array[i][j] == "X";
-                rows &= array[j][i] == "X";
+                columns &= array[i][j].equals(x);
+                rows &= array[j][i].equals(x);
             }
             if (columns || rows) return true;
         }
@@ -63,30 +70,11 @@ public class TicTacToeGame {
     }
 
     public static boolean checkDiagonalO(String[][] array) {
-        boolean right = true;
-        boolean left = true;
-        for(int i = 0; i < array.length; i++) {
-            right &= (array[i][i] == "O");
-            left &= (array[array.length - i - 1][i] == "O");
-        }
-        if(right || left) return true;
-        return false;
-
+        return checkDiagonal(array, O);
     }
 
     public static boolean checkLinesO(String [][] array) {
-        boolean rows;
-        boolean columns;
-        for(int i = 0; i < array.length; i++) {
-            columns = true;
-            rows = true;
-            for(int j = 0; j < array.length; j++) {
-                columns &= array[i][j] == "O";
-                rows &= array[j][i] == "O";
-            }
-            if (columns || rows) return true;
-        }
-        return false;
+        return checkLine(array, O);
     }
 
     public static boolean checkAllCell(String[][] array, String[][] array2) {
@@ -103,13 +91,13 @@ public class TicTacToeGame {
     public static boolean checkWin(String[][] array, String[][] array2) {
         boolean state = true;
         if(checkDiagonalX(array) || checkLinesX(array)) {
-            System.out.println("WIN X");
+            System.err.println("WIN X");
             state = false;
         } else if(checkDiagonalO(array) || checkLinesO(array)) {
-            System.out.println("WIN O");
+            System.err.println("WIN O");
             state = false;
         } else if(!checkAllCell(array, array2)) {
-            System.out.println("DRAW");
+            System.err.println("DRAW");
             state = false;
         }
         return state;
@@ -124,10 +112,10 @@ public class TicTacToeGame {
     }
 
     public static boolean checkCellOnBusy(String[][] array, int one) {
-        for(int i = 0; i < array.length; i++) {
-            for(int j = 0; j < array.length; j++) {
-                if(array[i][j].equalsIgnoreCase(String.valueOf(one))) {
-                    if(array[i][j].equalsIgnoreCase("X") || array[i][j].equalsIgnoreCase("O")) {
+        for (String[] strings : array) {
+            for (int j = 0; j < array.length; j++) {
+                if (strings[j].equalsIgnoreCase(String.valueOf(one))) {
+                    if (strings[j].equalsIgnoreCase(X) || strings[j].equalsIgnoreCase(O)) {
                         return true;
                     }
                 }
@@ -145,7 +133,7 @@ public class TicTacToeGame {
                 turn = !turn;
                 checkWin(array, array2);
             } else {
-                System.out.print("Please write number again: ");
+                System.err.print("\n Please write number again: ");
             }
         } while (checkWin(array, array2));
     }

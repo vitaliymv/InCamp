@@ -6,7 +6,7 @@ public class MainApplication {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Write size your map: ");
+        System.out.print("Write size map: ");
         int size = sc.nextInt();
         String[][] array = new String[size][size];
         String[][] array2 = new String[size][size];
