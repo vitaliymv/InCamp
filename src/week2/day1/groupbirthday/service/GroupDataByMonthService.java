@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class GroupDataByMonth {
+public class GroupDataByMonthService {
     private CollectDataService collectDataService = new CollectDataService();
 
     public void getGroupingEmployee() {
