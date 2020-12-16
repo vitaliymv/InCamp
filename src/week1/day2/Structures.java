@@ -1,9 +1,6 @@
 package week1.day2;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-
 
 public class Structures {
 
