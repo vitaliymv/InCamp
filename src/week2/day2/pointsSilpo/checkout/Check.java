@@ -27,5 +27,12 @@ public class Check {
         this.points += points;
     }
 
+    int getCostByCategory(Category category) {
+        return products.stream()
+                .filter(p -> p.category == category)
+                .mapToInt(p -> p.price)
+                .reduce(0, (a, b) -> a + b);
+    }
+
 
 }

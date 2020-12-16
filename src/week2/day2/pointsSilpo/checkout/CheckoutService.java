@@ -16,7 +16,6 @@ public class CheckoutService {
         check.addProduct(product);
     }
 
-
     public Check closeCheck() {
         Check closedCheck = check;
         check = null;
@@ -24,8 +23,15 @@ public class CheckoutService {
     }
 
     public void useOffer(AnyGoodsOffer offer) {
-        if (offer.totalCost <= check.getTotalCost())
-            check.addPoints(offer.points);
+        if(offer instanceof FactorByCategoryOffer) {
+            FactorByCategoryOffer fbOffer = (FactorByCategoryOffer) offer;
+            int points = check.getCostByCategory(fbOffer.category);
+            check.addPoints(points * (fbOffer.factor - 1));
+
+        } else {
+            if (offer.totalCost <= check.getTotalCost())
+                check.addPoints(offer.points);
+        }
     }
 
 
