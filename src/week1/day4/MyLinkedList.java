@@ -28,26 +28,25 @@ class MyLinkedList<T> {
         this.size++;
     }
 
-//    void replace(T name, T data) {
-//        Node<T> node = new Node(data);
-//        if (this.first == null) {
-//            throw new NoSuchElementException();
-//        } else if (this.first.getData().equals(name)) {
-//            this.first = this.first.getNext();
-//            return;
-//        }
-//        Node<T> current = this.first;
-//        Node<T> next = current.getNext();
-//        if (next.getData().equals(name)) {
-//            current.setNext(node);
-//
-//            if (node.getNext() == null) {
-//                this.last = current;
-//            }
-//
-//        }
-//
-//    }
+    void replace(T name, T data) {
+        Node<T> node = new Node(data);
+        if (this.first == null) {
+            throw new NoSuchElementException();
+        } else if (this.first.getData().equals(name)) {
+            this.first = this.first.getNext();
+            return;
+        }
+        Node<T> current = this.first;
+        Node<T> next = current.getNext();
+        if (next.getData().equals(name)) {
+            current.setNext(next.getNext());
+            if (next.getNext() == null) {
+                this.last = current;
+            }
+
+        }
+
+    }
 
     void remove(T data) {
         if (this.first == null) {
