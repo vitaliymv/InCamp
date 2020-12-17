@@ -146,4 +146,14 @@ public class CheckoutServiceTest {
         assertThat(check.getTotalPoints(), is(78));
     }
 
+    @Test
+    void getTotalCostsWithDiscount() {
+        checkoutService.addProduct(chips_10);
+        checkoutService.addProduct(chocolate_8);
+        checkoutService.addProduct(bred_3);
+        checkoutService.addProduct(bred_3);
+        checkoutService.useOffer(new Discount(chips_10, 50));
+        Check check = checkoutService.closeCheck();
+    }
+
 }
