@@ -22,16 +22,20 @@ public class CheckoutService {
         return closedCheck;
     }
 
-    public void useOffer(AnyGoodsOffer offer) {
-        if(offer instanceof FactorByCategoryOffer) {
-            FactorByCategoryOffer fbOffer = (FactorByCategoryOffer) offer;
-            int points = check.getCostByCategory(fbOffer.category);
-            check.addPoints(points * (fbOffer.factor - 1));
+    public void useOffer(Offer offer) {
+        offer.apply(check);
+//        if(offer instanceof FactorByCategoryOffer) {
+//            FactorByCategoryOffer fbOffer = (FactorByCategoryOffer) offer;
+//            int points = check.getCostByCategory(fbOffer.category);
+//            check.addPoints(points * (fbOffer.factor - 1));
+//        } else {
+//            if(offer instanceof AnyGoodsOffer) {
+//                AnyGoodsOffer agOffer = (AnyGoodsOffer) offer;
+//                if (agOffer.totalCost <= check.getTotalCost())
+//                    check.addPoints(agOffer.points);
+//            }
 
-        } else {
-            if (offer.totalCost <= check.getTotalCost())
-                check.addPoints(offer.points);
-        }
+//        }
     }
 
 
