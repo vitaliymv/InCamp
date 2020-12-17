@@ -22,7 +22,7 @@ public class CheckoutServiceTest {
         checkoutService.openCheck();
 
         milk_7 = new Product(7, "milk", Category.MILK);
-        bred_3 = new Product(3, "bred");
+        bred_3 = new Product(3, "bred", Category.BRED);
     }
 
     @Test
@@ -93,6 +93,28 @@ public class CheckoutServiceTest {
         Check check = checkoutService.closeCheck();
 
         assertThat(check.getTotalPoints(), is(31));
+    }
+
+    @Test
+    void useOffer__factorByCategory__whenCheckNotClosed() {
+        checkoutService.addProduct(milk_7);
+        checkoutService.addProduct(milk_7);
+        checkoutService.useOffer(new FactorByCategoryOffer(Category.MILK, 2));
+        Check check = checkoutService.closeCheck();
+        assertThat(check.getTotalPoints(), is(28));
+    }
+
+    @Test
+    void useOffer__factorByTwoCategory() {
+        checkoutService.addProduct(milk_7);
+        checkoutService.addProduct(milk_7);
+        checkoutService.addProduct(bred_3);
+        checkoutService.addProduct(bred_3);
+        checkoutService.useOffer(new FactorByCategoryOffer(Category.BRED, 3));
+        checkoutService.useOffer(new FactorByCategoryOffer(Category.MILK, 2));
+        Check check = checkoutService.closeCheck();
+
+        assertThat(check.getTotalPoints(), is(46));
     }
 
 }
